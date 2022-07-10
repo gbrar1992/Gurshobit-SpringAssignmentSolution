@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:if="${formMode.equals('create')}">Add Student</title>
+    <title th:if="${formMode.equals('update')}">Edit Student</title>
+    <link th:href="@{'/bootstrap.min.css'}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row mb-2">
+        <div class="col-12 text-center p-5 bg-warning text-bg-warning">
+            <h1>Rainbow College Festival</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <a th:href="@{'/students/list'}" class="btn btn btn-dark btn-sm mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-left"><polyline points="11 17 6 12 11 7"></polyline><polyline points="18 17 13 12 18 7"></polyline></svg> All Students</a>
+            <h3 th:if="${formMode.equals('create')}">Add Student</h3>
+            <h3 th:if="${formMode.equals('update')}">Edit Student</h3>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12 px-0">
+            <div class="row">
+                <form th:action="@{/students/save}" th:object="${singleStudent}" method="post">
+                    <input type="hidden" th:field="*{id}">
+                    <div class="col-3">
+                        <label class="form-label">Student First Name</label>
+                        <input type="text" th:field="*{firstName}" placeholder="Student First Name" class="form-control mb-4 col-4">
+                    </div>
+                    <div class="col-3">
+                        <label class="form-label">Student Last Name</label>
+                        <input type="text"  th:field="*{lastName}" placeholder="Student Last Name" class="form-control mb-4 col-4">
+                    </div>
+                    <div class="col-3">
+                        <label class="form-label">Course</label>
+                        <input type="text"  th:field="*{course}" placeholder="Course" class="form-control mb-4 col-4">
+                    </div>
+                    <div class="col-3">
+                        <label class="form-label">Country</label>
+                        <input type="text"  th:field="*{country}" placeholder="Country" class="form-control mb-4 col-4">
+                    </div>
+                    <button type="submit" class="btn btn-warning col-2">Submit</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
